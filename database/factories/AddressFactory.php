@@ -20,9 +20,9 @@ class AddressFactory extends Factory
             'country' => fake()->country(),
             'state' => fake()->text(5),
             'city' => fake()->city(),
-            'zip_code' => fake()->numberBetween(8000, 10000),
+            'zip_code' => fake()->numberBetween(8000, 9000),
             'street' => fake()->streetName(),
-            'street_nr' => fake()->numberBetween(1, 200),
+            'street_nr' => fake()->buildingNumber()
         ];
     }
 }

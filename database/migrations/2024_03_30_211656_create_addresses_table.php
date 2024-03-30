@@ -11,15 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('work_orders', function (Blueprint $table) {
+        Schema::create('addresses', function (Blueprint $table) {
             $table->id();
-            $table->boolean('status');
-            $table->unsignedBigInteger('owner_id'); // FK
-            $table->unsignedBigInteger('task_id'); // Fk do later
+            $table->string('country');
+            $table->string('state');
+            $table->string('city');
+            $table->integer('zip_code');
+            $table->string('street');
+            $table->integer('street_nr');
+            $table->unsignedBigInteger('owner_id');
             $table->timestamps();
 
             $table->foreign('owner_id')->references('id')->on('owners');
-            $table->foreign('task_id')->references('id')->on('tasks');
         });
     }
 
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('work_orders');
+        Schema::dropIfExists('addresses');
     }
 };

@@ -15,13 +15,13 @@ class RoleSeeder extends Seeder
     public function run(): void
     {
         DB::table('roles')->insert([
-            'role_name' => 'operator',
+            'name' => 'operator',
             'created_at' => Carbon::now()->format('y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('y-m-d H:i:s')
         ]);
 
         DB::table('roles')->insert([
-            'role_name' => 'mechanic',
+            'name' => 'mechanic',
             'created_at' => Carbon::now()->format('y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('y-m-d H:i:s')
         ]);

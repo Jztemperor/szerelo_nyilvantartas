@@ -49,7 +49,7 @@ class UserFactory extends Factory
      */
     public function role(string $roleName): static
     {
-        $roleId = Role::where('role_name', $roleName)->value('id');
+        $roleId = Role::where('name', $roleName)->value('id');
 
         return $this->state(fn (array $attributes) => [
             'role_id' => $roleId

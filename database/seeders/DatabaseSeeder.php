@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Owner;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,11 +17,11 @@ class DatabaseSeeder extends Seeder
     {
         // Call seeders
         $this->call([
-            RoleSeeder::class
+            RoleSeeder::class,
+            RelationSeeder::class,
         ]);
 
-        // Call factories
-        \App\Models\UserWorkorder::factory(10)->create();
-        \App\Models\PartWorkorder::factory(10)->create();
+        // \App\Models\User::factory(5)->role('operator')->create();
+        // \App\Models\User::factory(5)->role('mechanic')->create();
     }
 }

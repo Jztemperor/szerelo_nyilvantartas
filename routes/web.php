@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\WorkOrder;
 use Illuminate\Support\Facades\Route;
 
 /*

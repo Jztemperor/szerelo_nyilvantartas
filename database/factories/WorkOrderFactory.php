@@ -2,8 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Owner;
-use App\Models\Task;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,13 +16,8 @@ class WorkOrderFactory extends Factory
      */
     public function definition(): array
     {
-        $task = Task::factory()->create();
-        $owner = Owner::factory()->create();
-
         return [
-            'status' => fake()->boolean(),
-            'owner_id' => $owner->id,
-            'task_id' => $task->id,
+            'status' => fake()->boolean()
         ];
     }
 }

@@ -17,9 +17,9 @@ class CarFactory extends Factory
     public function definition(): array
     {
         return [
-            'license_plate' => fake()->text(6),
+            'license_plate' => fake()->text(5),
             'make' => fake()->text(5),
-            'model' => fake()->text(5),
+            'model' => fake()->text(8),
             'manufacturing_year' => fake()->year()
         ];
     }

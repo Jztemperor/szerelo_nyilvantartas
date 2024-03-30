@@ -18,7 +18,7 @@ class TaskFactory extends Factory
     {
         return [
             'name' => fake()->text(),
-            'duration' => fake()->randomNumber(2)
+            'duration' => fake()->numberBetween(1, 40)
         ];
     }
 }
