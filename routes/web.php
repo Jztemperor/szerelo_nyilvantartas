@@ -19,9 +19,14 @@ Route::get('/', function () {
 
     return view('welcome');
 });
+Route::get('/testdata', function () {
+
+    return view('testdata');
+});
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
+
 Route::group(['prefix' => 'content'], function () {
     Route::get('/dashboard', function () {
         return view('contents.dashboard', [
