@@ -35,7 +35,12 @@ Route::group(['prefix' => 'content'], function () {
     });
     Route::get('/worksheets', function () {
         return view('contents.worksheets',[
-            'titles' => ['Worksheets','Create']
+            'titles' => ['Worksheets']
+        ]);
+    });
+    Route::get('/worksheets/view', function () {
+        return view('contents.view_worksheet',[
+            'titles' => ['Worksheets', 'View']
         ]);
     });
     Route::get('/workers', function () {
