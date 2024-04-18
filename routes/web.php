@@ -16,5 +16,47 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+
+    return view('welcome');
+});
+Route::get('/testdata', function () {
+
+    return view('testdata');
+});
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
+
+Route::group(['prefix' => 'content'], function () {
+    Route::get('/dashboard', function () {
+        return view('contents.dashboard', [
+            'titles' => []
+        ]);
+    });
+    Route::get('/worksheets', function () {
+        return view('contents.worksheets',[
+            'titles' => ['Worksheets']
+        ]);
+    });
+    Route::get('/worksheets/view', function () {
+        return view('contents.view_worksheet',[
+            'titles' => ['Worksheets', 'View']
+        ]);
+    });
+    Route::get('/workers', function () {
+        return view('contents.workers',[
+            'titles' => ['Workers']
+        ]);
+    });
+    Route::get('/inbox', function () {
+        return view('contents.inbox',[
+            'titles' => ['Inbox']
+        ]);
+    });
+});
+
+
 Route::get('/', [AuthenticationController::class,'create']);
 Route::post('/', [AuthenticationController::class,'store']);
+
