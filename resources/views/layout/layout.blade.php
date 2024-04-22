@@ -13,7 +13,6 @@
     @yield('content')
 
     <script>
-
         document.getElementById('worksheetslink').addEventListener("click", (evt) => {evt.preventDefault();
             const xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {

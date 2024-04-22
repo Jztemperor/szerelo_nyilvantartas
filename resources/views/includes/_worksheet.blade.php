@@ -1,96 +1,68 @@
 
+<h1 class="mb-8 text-center text-5xl font-extrabold dark:text-white">Worksheet</h1>
+<div class="flex">
+    <div class="px-6 w-2/4 text-left">
+        <div>Administrator: {{$administrator}}</div>
+        <div>Mechanic: {{$mechanic}}</div>
+    </div>
+    <div class="px-6 w-2/4  text-left">
+        <div>Car: {{$cardet['car']}}</div>
+        <div>Owner: {{$cardet['owner']}}</div>
+    </div>
+</div>
+<hr class="h-px mb-6 mt-2 bg-gray-200 border-0 dark:bg-gray-700">
+<div class="relative overflow-x-auto ">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
+        <tr>
+            <th scope="col" class="px-6 py-3">
+                Item
+            </th>
 
-<div id="detailed-pricing" class="w-full overflow-x-auto">
-    <div class="overflow-hidden min-w-max">
-        <div class="grid grid-cols-4 p-4 text-sm font-medium text-gray-900 bg-gray-100 border-t border-b border-gray-200 gap-x-16 dark:bg-gray-800 dark:border-gray-700 dark:text-white">
-            <div class="flex items-center">Tailwind CSS code</div>
-            <div>Community Edition</div>
-            <div>Developer Edition</div>
-            <div>Designer Edition</div>
-        </div>
-        <div class="grid grid-cols-4 px-4 py-5 text-sm text-gray-700 border-b border-gray-200 gap-x-16 dark:border-gray-700">
-            <div class="text-gray-500 dark:text-gray-400">Basic components (<a href="#" class="text-blue-600 hover:underline">view all</a>)</div>
-            <div>
-                <svg class="w-3 h-3 text-green-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
-                </svg>
-            </div>
-            <div>
-                <svg class="w-3 h-3 text-green-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
-                </svg>
-            </div>
-            <div>
-                <svg class="w-3 h-3 text-green-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
-                </svg>
-            </div>
-        </div>
-        <div class="grid grid-cols-4 px-4 py-5 text-sm text-gray-700 border-b border-gray-200 gap-x-16 dark:border-gray-700">
-            <div class="text-gray-500 dark:text-gray-400">Application UI (<a href="#" class="text-blue-600 hover:underline">view demo</a>)</div>
-            <div>
-                <svg class="w-3 h-3 text-red-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                </svg>
-            </div>
-            <div>
-                <svg class="w-3 h-3 text-green-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
-                </svg>
-            </div>
-            <div>
-                <svg class="w-3 h-3 text-red-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                </svg>
-            </div>
-        </div>
-        <div class="grid grid-cols-4 px-4 py-5 text-sm text-gray-700 border-b border-gray-200 gap-x-16 dark:border-gray-700">
-            <div class="text-gray-500 dark:text-gray-400">Marketing UI pre-order</div>
-            <div>
-                <svg class="w-3 h-3 text-red-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                </svg>
-            </div>
-            <div>
-                <svg class="w-3 h-3 text-green-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
-                </svg>
-            </div>
-            <div>
-                <svg class="w-3 h-3 text-red-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                </svg>
-            </div>
-        </div>
-        <div class="grid grid-cols-4 px-4 py-5 text-sm text-gray-700 border-b border-gray-200 gap-x-16 dark:border-gray-700">
-            <div class="text-gray-500 dark:text-gray-400">E-commerce UI pre-order</div>
-            <div>
-                <svg class="w-3 h-3 text-red-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                </svg>
-            </div>
-            <div>
-                <svg class="w-3 h-3 text-green-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
-                </svg>
-            </div>
-            <div>
-                <svg class="w-3 h-3 text-red-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                </svg>
-            </div>
-        </div>
-        <div class="grid grid-cols-4 px-4 py-5 text-sm text-gray-700 border-b border-gray-200 gap-x-16 dark:border-gray-700">
-            <div class="text-gray-500 dark:text-gray-400"></div>
-            <div>
-                <a href="#" class="text-white block w-full bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 font-medium rounded-lg text-sm px-4 py-2.5 text-center dark:focus:ring-blue-900">Buy now</a>
-            </div>
-            <div>
-                <a href="#" class="text-white block w-full bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 font-medium rounded-lg text-sm px-4 py-2.5 text-center dark:focus:ring-blue-900">Buy now</a>
-            </div>
-            <div>
-                <a href="#" class="text-white block w-full bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 font-medium rounded-lg text-sm px-4 py-2.5 text-center dark:focus:ring-blue-900">Buy now</a>
-            </div>
-        </div>
+            <th scope="col" class="px-6 py-3">
+                Quantity
+            </th>
+            <th scope="col" class="px-6 py-3">
+                Price
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        @include('includes._worksheet-item', [
+            'item'=>'Engine v6 for Mazda 3',
+            'quantity'=>1,
+            'price'=>'200.000Ft'
+        ])
+        @include('includes._worksheet-item', [
+            'item'=>'Mechanical part for Mazda 3',
+            'quantity'=>1,
+            'price'=>'50.000Ft'
+        ])
+        @include('includes._worksheet-item', [
+            'item'=>'Material for engine',
+            'quantity'=>1,
+            'price'=>'15.000Ft'
+        ])
+        @include('includes._worksheet-item', [
+            'item'=>'Working cost 10.000/hour',
+            'quantity'=>12,
+            'price'=>'120.000Ft'
+        ])
+        </tbody>
+    </table>
+</div>
+<div class="mt-16 flex">
+    <div class="px-6 w-3/4 text-left">Total price: </div>
+    <div class="px-6 w-1/4  text-left">385.000Ft</div>
+</div>
+<hr class="h-px mt-2 bg-gray-200 border-0 dark:bg-gray-700">
+<div class="mt-28 flex">
+    <div class="px-6 w-2/4 text-center">
+        <hr class="h-px w-2/3 bg-gray-800 border-0 dark:bg-gray-700 m-auto">
+        <div>Administrator</div>
+    </div>
+    <div class="px-6 w-2/4  text-center">
+        <hr class="h-px w-2/3 bg-gray-800 border-0 dark:bg-gray-700 m-auto">
+        <div>Owner</div>
     </div>
 </div>

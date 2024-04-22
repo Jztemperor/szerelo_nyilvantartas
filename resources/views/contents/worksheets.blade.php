@@ -5,7 +5,7 @@
 
         <div class="mt-5 relative overflow-x-auto shadow-md sm:rounded-lg">
             <div class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900">
-                <label for="table-search" class="sr-only">Search</label>
+                <label for="table-search-users" class="sr-only">Search</label>
                 <div class="relative">
                     <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
                         <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -158,7 +158,7 @@
                        2024.02.11
                     </td>
                     <td class="px-6 py-4">
-                        <button id="view" onclick="routeToContent('/content/worksheets/view',event)" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">View</button>
+                        <button id="view" onclick="routeToContent('/content/worksheets/321', event)" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">View</button>
                     </td>
                 </tr>
                 </tbody>
