@@ -39,9 +39,9 @@ Route::group(['prefix' => 'content'], function () {
             'titles' => ['Worksheets']
         ]);
     });
-    Route::get('/worksheets/view', function () {
+    Route::get('/worksheets/{worksheetID}', function () {
         return view('contents.view_worksheet',[
-            'titles' => ['Worksheets', 'View']
+            'titles' => ['Worksheets', 'View'],
         ]);
     });
     Route::get('/workers', function () {

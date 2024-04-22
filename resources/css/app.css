@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.speed-dial-menu-text-outside-button {
+    display: none !important;
+}
+.speed-dial-menu-text-outside-button :hover {
+    display: flex !important;
+}
