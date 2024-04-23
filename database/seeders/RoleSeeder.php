@@ -25,5 +25,11 @@ class RoleSeeder extends Seeder
             'created_at' => Carbon::now()->format('y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('y-m-d H:i:s')
         ]);
+
+        DB::table('roles')->insert([
+            'name' => 'admin',
+            'created_at' => Carbon::now()->format('y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('y-m-d H:i:s')
+        ]);
     }
 }

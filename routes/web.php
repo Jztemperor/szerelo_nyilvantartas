@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InboxController;
+use App\Http\Controllers\UsersController;
 use App\Http\Controllers\WorkersController;
 use App\Http\Controllers\WorksheetsController;
 use Illuminate\Support\Facades\Route;
@@ -40,3 +41,4 @@ Route::get('/', [AuthenticationController::class,'create'])->name('login');
 Route::post('/', [AuthenticationController::class,'store']);
 Route::delete('/', [AuthenticationController::class,'destroy'])->name('logout');
 
+Route::resource('users', UsersController::class)->middleware('authorize:admin');
