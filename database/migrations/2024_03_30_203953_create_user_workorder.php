@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('work_order_id'); // itt is
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('work_order_id')->references('id')->on('work_orders'); // itt is
         });
     }

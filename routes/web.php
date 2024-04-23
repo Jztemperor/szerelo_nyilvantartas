@@ -41,4 +41,5 @@ Route::get('/', [AuthenticationController::class,'create'])->name('login');
 Route::post('/', [AuthenticationController::class,'store']);
 Route::delete('/', [AuthenticationController::class,'destroy'])->name('logout');
 
-Route::resource('users', UsersController::class)->middleware('authorize:admin');
+Route::resource('users', UsersController::class)->except('show')->middleware('authorize:admin');
+Route::get('/users/search', [UsersController::class,'search'])->name('users.search')->middleware('authorize:admin');
