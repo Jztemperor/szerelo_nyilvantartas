@@ -18,23 +18,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
 
-    return view('welcome');
-});
 Route::get('/testdata', function () {
 
     return view('testdata');
 });
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
 
-
-Route::get('/dashboard', [DashboardController::class,'index']);
-Route::get('/worksheets', [WorksheetsController::class,'index']);
-Route::get('/workers', [WorkersController::class,'index']);
-Route::get('/inbox', [InboxController::class,'index']);
+Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard')->middleware('auth');
+Route::get('/worksheets', [WorksheetsController::class,'index'])->name('worksheets')->middleware('auth');
+Route::get('/workers', [WorkersController::class,'index'])->name('workers')->middleware('auth');
+Route::get('/inbox', [InboxController::class,'index'])->name('inbox')->middleware('auth');
 
 Route::get('/worksheets/{worksheetID}', function () {
     return view('contents.view_worksheet',[
@@ -43,6 +36,7 @@ Route::get('/worksheets/{worksheetID}', function () {
 });
 
 
-Route::get('/', [AuthenticationController::class,'create']);
+Route::get('/', [AuthenticationController::class,'create'])->name('login');
 Route::post('/', [AuthenticationController::class,'store']);
+Route::delete('/', [AuthenticationController::class,'destroy'])->name('logout');
 

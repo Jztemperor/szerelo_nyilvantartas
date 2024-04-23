@@ -32,7 +32,7 @@ class AuthenticationController extends Controller
         
         $request->session()->regenerate();
 
-        return redirect()->route('/dashboard');
+        return redirect()->route('dashboard');
     }
 
     public function destroy(Request $request)
@@ -42,7 +42,7 @@ class AuthenticationController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerate();
 
-        return redirect()->route('/'); 
+        return redirect()->route('login'); 
     }
 
 }
