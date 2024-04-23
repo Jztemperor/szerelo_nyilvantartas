@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InboxController;
+use App\Http\Controllers\UsersController;
 use App\Http\Controllers\WorkersController;
 use App\Http\Controllers\WorksheetsController;
 use Illuminate\Support\Facades\Route;
@@ -18,23 +19,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
 
-    return view('welcome');
-});
 Route::get('/testdata', function () {
 
     return view('testdata');
 });
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
 
-
-Route::get('/dashboard', [DashboardController::class,'index']);
-Route::get('/worksheets', [WorksheetsController::class,'index']);
-Route::get('/workers', [WorkersController::class,'index']);
-Route::get('/inbox', [InboxController::class,'index']);
+Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard')->middleware('auth');
+Route::get('/worksheets', [WorksheetsController::class,'index'])->name('worksheets')->middleware('auth');
+Route::get('/workers', [WorkersController::class,'index'])->name('workers')->middleware('auth');
+Route::get('/inbox', [InboxController::class,'index'])->name('inbox')->middleware('auth');
 
 Route::get('/worksheets/{worksheetID}', function () {
     return view('contents.view_worksheet',[
@@ -43,6 +37,9 @@ Route::get('/worksheets/{worksheetID}', function () {
 });
 
 
-Route::get('/', [AuthenticationController::class,'create']);
+Route::get('/', [AuthenticationController::class,'create'])->name('login');
 Route::post('/', [AuthenticationController::class,'store']);
+Route::delete('/', [AuthenticationController::class,'destroy'])->name('logout');
 
+Route::resource('users', UsersController::class)->except('show')->middleware('authorize:admin');
+Route::get('/users/search', [UsersController::class,'search'])->name('users.search')->middleware('authorize:admin');
