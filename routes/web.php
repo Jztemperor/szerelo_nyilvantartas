@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\AuthenticationController;
-use App\Models\User;
-use App\Models\WorkOrder;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\InboxController;
+use App\Http\Controllers\WorkersController;
+use App\Http\Controllers\WorksheetsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,32 +30,16 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
-Route::group(['prefix' => 'content'], function () {
-    Route::get('/dashboard', function () {
-        return view('contents.dashboard', [
-            'titles' => []
-        ]);
-    });
-    Route::get('/worksheets', function () {
-        return view('contents.worksheets',[
-            'titles' => ['Worksheets']
-        ]);
-    });
-    Route::get('/worksheets/{worksheetID}', function () {
-        return view('contents.view_worksheet',[
-            'titles' => ['Worksheets', 'View'],
-        ]);
-    });
-    Route::get('/workers', function () {
-        return view('contents.workers',[
-            'titles' => ['Workers']
-        ]);
-    });
-    Route::get('/inbox', function () {
-        return view('contents.inbox',[
-            'titles' => ['Inbox']
-        ]);
-    });
+
+Route::get('/dashboard', [DashboardController::class,'index']);
+Route::get('/worksheets', [WorksheetsController::class,'index']);
+Route::get('/workers', [WorkersController::class,'index']);
+Route::get('/inbox', [InboxController::class,'index']);
+
+Route::get('/worksheets/{worksheetID}', function () {
+    return view('contents.view_worksheet',[
+        'titles' => ['Worksheets', 'View'],
+    ]);
 });
 
 

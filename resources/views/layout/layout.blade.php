@@ -13,62 +13,6 @@
     @yield('content')
 
     <script>
-        document.getElementById('worksheetslink').addEventListener("click", (evt) => {evt.preventDefault();
-            const xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function () {
-                if (this.readyState === 4 && this.status === 200) {
-                    document.getElementById("content").innerHTML = this.responseText;
-                }
-            }
-            xhttp.open("GET", "/content/worksheets", true);
-            xhttp.send();
-        }, false)
-
-        document.getElementById('dashboardlink').addEventListener("click", (evt) => {
-            evt.preventDefault();
-            const xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function () {
-                if (this.readyState === 4 && this.status === 200) {
-                    document.getElementById("content").innerHTML = this.responseText;
-                }
-            }
-            xhttp.open("GET", "/content/dashboard", true);
-            xhttp.send();
-        }, false)
-
-        document.getElementById('workerslink').addEventListener("click", (evt) => {
-            evt.preventDefault();
-            const xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function () {
-                if (this.readyState === 4 && this.status === 200) {
-                    document.getElementById("content").innerHTML = this.responseText;
-                }
-            }
-            xhttp.open("GET", "/content/workers", true);
-            xhttp.send();
-        }, false)
-
-        document.getElementById('inboxlink').addEventListener("click", (evt) => {
-            evt.preventDefault();
-            const xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function () {
-                if (this.readyState === 4 && this.status === 200) {
-                    document.getElementById("content").innerHTML = this.responseText;
-                }
-            }
-            xhttp.open("GET", "/content/inbox", true);
-            xhttp.send();
-        }, false)
-
-        //Default load
-        const xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if (this.readyState === 4 && this.status === 200) {
-                document.getElementById("content").innerHTML = this.responseText;
-            }
-        }
-        xhttp.open("GET", "/content/dashboard", true);
-        xhttp.send();
 
         function routeToContent(content,evt) {
             evt.preventDefault();
