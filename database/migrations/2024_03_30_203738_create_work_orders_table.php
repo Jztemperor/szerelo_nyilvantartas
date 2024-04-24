@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('work_orders', function (Blueprint $table) {
             $table->id();
-            $table->boolean('status');
+            $table->string('status');
             $table->unsignedBigInteger('owner_id');
             $table->timestamps();
 

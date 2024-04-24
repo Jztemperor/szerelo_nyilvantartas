@@ -17,7 +17,7 @@ class PartFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->text(),
+            'name' => fake()->randomElement(['Engine', 'Turbo', 'Paint', 'Window', 'Brakes', 'Bumper', 'Battery', 'Axel', 'Radiator', 'Alternator']),
             'quantity' => fake()->numberBetween(1, 200),
             'price' => fake()->numberBetween(10000, 5000000)
         ];

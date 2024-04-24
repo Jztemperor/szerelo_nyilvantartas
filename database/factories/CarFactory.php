@@ -18,8 +18,8 @@ class CarFactory extends Factory
     {
         return [
             'license_plate' => fake()->text(5),
-            'make' => fake()->text(5),
-            'model' => fake()->text(8),
+            'make' => fake()->randomElement(['Ford', 'BMW', 'Audi', 'Mercedes', 'Dodge']),
+            'model' => fake()->randomElement(['Focus', '335i', 'RS6', 'CLS350', 'Charger']),
             'manufacturing_year' => fake()->year()
         ];
     }

@@ -17,7 +17,23 @@ class TaskFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->text(),
+            'name' => fake()->randomElement([
+                'Oil Change',
+                'Brake Inspection',
+                'Tire Rotation',
+                'Battery Check',
+                'Engine Tune-Up',
+                'Transmission Service',
+                'Brake Pad Replacement',
+                'Wheel Alignment',
+                'Air Filter Replacement',
+                'Spark Plug Replacement',
+                'Coolant Flush',
+                'Windshield Wiper Replacement',
+                'Fuel Filter Replacement',
+                'Timing Belt Replacement',
+                'Exhaust System Inspection'
+            ]),
             'duration' => fake()->numberBetween(1, 40)
         ];
     }

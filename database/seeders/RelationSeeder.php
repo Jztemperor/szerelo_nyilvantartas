@@ -25,7 +25,8 @@ class RelationSeeder extends Seeder
             ->has(Car::factory()->count(1))
             ->has(
                 WorkOrder::factory()->count(1)
-                    ->has(User::factory()->role('operator')->count(5))
+                    ->has(User::factory()->role('mechanic')->count(1))
+                    ->has(User::factory()->role('operator')->count(1))
                     ->has(Task::factory()->count(5))
                     ->has(Part::factory()->count(5))
             )

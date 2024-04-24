@@ -26,16 +26,7 @@ Route::get('/testdata', function () {
 });
 
 Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard')->middleware('auth');
-Route::get('/worksheets', [WorksheetsController::class,'index'])->name('worksheets')->middleware('auth');
-Route::get('/workers', [WorkersController::class,'index'])->name('workers')->middleware('auth');
 Route::get('/inbox', [InboxController::class,'index'])->name('inbox')->middleware('auth');
-
-Route::get('/worksheets/{worksheetID}', function () {
-    return view('contents.view_worksheet',[
-        'titles' => ['Worksheets', 'View'],
-    ]);
-});
-
 
 Route::get('/', [AuthenticationController::class,'create'])->name('login');
 Route::post('/', [AuthenticationController::class,'store']);
@@ -43,3 +34,5 @@ Route::delete('/', [AuthenticationController::class,'destroy'])->name('logout');
 
 Route::resource('users', UsersController::class)->except('show')->middleware('authorize:admin');
 Route::get('/users/search', [UsersController::class,'search'])->name('users.search')->middleware('authorize:admin');
+
+Route::resource('worksheets', WorksheetsController::class)->middleware('auth');
