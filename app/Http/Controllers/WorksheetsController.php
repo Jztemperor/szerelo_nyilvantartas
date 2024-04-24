@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreWorksheetRequest;
+use App\Models\Address;
 use App\Models\Owner;
+use App\Models\Car;
+use App\Models\User;
 use App\Models\WorkOrder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -72,5 +76,59 @@ class WorksheetsController extends Controller
         $workorder->save();
 
         return redirect()->back();
+    }
+
+    public function create()
+    {
+        $mechanics = User::join('roles', 'users.role_id', '=', 'roles.id')
+                        ->where('roles.name', 'mechanic')
+                        ->select('users.*')
+                        ->get();
+
+        return view('contents.worksheets.create', [
+            'titles' => ['Worksheets', 'Create'],
+            'mechanics' => $mechanics
+        ]);
+    }
+
+    public function store(StoreWorksheetRequest $request)
+    {
+        $currentUser = Auth::user();
+        $mechanic = User::findOrFail($request->mechanic);
+
+        // Create owner
+        $owner = Owner::make();
+        $owner->first_name = $request->owner_first_name;
+        $owner->last_name = $request->owner_last_name;
+        $owner->phone = $request->owner_phone;
+        $owner->save();
+
+
+        // Create car
+        $car = Car::make();
+        $car->make = $request->make;
+        $car->model = $request->model;
+        $car->license_plate = $request->license_plate;
+        $car->manufacturing_year = $request->manufacturing_year;
+        $owner->cars()->save($car);
+
+        // Create address
+        $address = Address::make();
+        $address->country = $request->owner_country;
+        $address->city = $request->owner_city;
+        $address->state = $request->owner_state;
+        $address->zip_code = $request->owner_zip;
+        $address->street = $request->owner_street;
+        $address->street_nr = $request->owner_steetnr;
+        $owner->address()->save($address);
+
+        $workorder = WorkOrder::make();
+        $workorder->status = "started";
+        $owner->workorders()->save($workorder);
+        $workorder->users()->save($currentUser);
+        $workorder->users()->save($mechanic);
+
+        return redirect()->route('worksheets.index');
+
     }
 }
