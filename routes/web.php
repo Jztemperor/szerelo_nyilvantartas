@@ -26,18 +26,7 @@ Route::get('/testdata', function () {
 });
 
 Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard')->middleware('auth');
-Route::get('/worksheets', [WorksheetsController::class,'index'])->name('worksheets')->middleware('auth');
-//Route::get('/workers', [WorkersController::class,'index'])->name('workers')->middleware('auth');
 Route::get('/inbox', [InboxController::class,'index'])->name('inbox')->middleware('auth');
-
-/*
-Route::get('/worksheets/{worksheetID}', function () {
-    return view('contents.view_worksheet',[
-        'titles' => ['Worksheets', 'View'],
-    ]);
-});
-*/
-
 
 Route::get('/', [AuthenticationController::class,'create'])->name('login');
 Route::post('/', [AuthenticationController::class,'store']);

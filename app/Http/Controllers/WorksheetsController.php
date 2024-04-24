@@ -62,4 +62,15 @@ class WorksheetsController extends Controller
             'mechanic' => $mechanic
         ]);
     }
+
+    public function update(Request $request, $id)
+    {
+        $workorder = WorkOrder::findOrFail($id);
+        $this->authorize('update', $workorder);
+
+        $workorder->status = 'Finished';
+        $workorder->save();
+
+        return redirect()->back();
+    }
 }

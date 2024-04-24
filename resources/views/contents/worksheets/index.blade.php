@@ -74,7 +74,15 @@
                             {{$workorder->updated_at}}
                         </td>
                         <td class="px-6 py-4">
-                            <a id="view" href="{{route('worksheets.show', $workorder->id)}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">View</a>
+                            <a href="{{route('worksheets.show', $workorder->id)}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline mr-2">View</a>
+
+                            <form class="inline max-w-sm mx-auto" method="POST" action="{{route('worksheets.update', $workorder->id)}}">
+                                @csrf
+                                @method('PUT')
+                                <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline" type="submit">Finish
+                            </form>
+
+                           
                         </td>
                     </tr>
                 @endforeach
