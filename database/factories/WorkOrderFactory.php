@@ -17,7 +17,7 @@ class WorkOrderFactory extends Factory
     public function definition(): array
     {
         return [
-            'status' => fake()->boolean()
+            'status' => fake()->randomElement(['working', 'finished', 'starting', 'closed'])
         ];
     }
 }
