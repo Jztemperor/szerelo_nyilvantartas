@@ -10,7 +10,20 @@
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                         </svg>
                     </div>
-                    <input type="text" id="table-search-users" class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for worksheets">
+                    
+                    <div class="flex items-center justify-between gap-5">
+                        <div class="flex items-center gap-5">
+                            <form method="GET" action="{{ route('worksheets.index') }}" class="flex items-center">
+                                <input type="text" name="search" id="table-search-users" class="mr-5 block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for worksheets">
+                                <button type="submit" class="px-3 py-2 bg-blue-500 text-white rounded-lg">Search</button>
+                            </form>
+
+                            <a href="{{route("worksheets.index")}}" class="px-3 py-2 bg-gray-500 text-white rounded-lg">Clear</a>
+                        </div>
+
+                        <a href="{{route('worksheets.create')}}" class="px-3 py-2 bg-blue-500 text-white rounded-lg">Create new worksheet</a>
+                    </div>
+
                 </div>
             </div>
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -61,7 +74,7 @@
                             {{$workorder->updated_at}}
                         </td>
                         <td class="px-6 py-4">
-                            <button id="view" onclick="routeToContent('/worksheets/321', event)" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">View</button>
+                            <a id="view" href="{{route('worksheets.show', $workorder->id)}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">View</a>
                         </td>
                     </tr>
                 @endforeach

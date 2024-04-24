@@ -2,6 +2,6 @@
 
 @section('content')
     <div id="content">
-        @include('contents.worksheets')
+        @include('contents.worksheets.index')
     </div>
 @endsection

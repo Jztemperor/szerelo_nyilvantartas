@@ -31,4 +31,21 @@ class WorkOrder extends Model
     {
         return $this->belongsTo(Owner::class);
     }
+
+
+    public function calculateTotal($hourlyCost)
+    {
+        $total = 0;
+        foreach ($this->tasks as $task) 
+        {
+            $total += $task->duration * $hourlyCost;
+        }
+
+        foreach ($this->parts as $part)
+        {
+            $total += $part->price;
+        }
+
+        return $total;
+    }
 }

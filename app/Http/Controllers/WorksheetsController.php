@@ -9,22 +9,19 @@ use Illuminate\Http\Request;
 
 class WorksheetsController extends Controller
 {
-    /*
-
-    public function index() : View
+    public function index(Request $request) : View
     {
-        return view('pages.worksheets',[
-            'titles' => ['Worksheets'],
-            'worksheets' => ['first','second','third'],
-            'owners' => Owner::orderBy('created_at','DESC')->paginate(5)
-        ]);
-    }
+        $search = $request->input('search');
+        $query = WorkOrder::query();
 
-    */
+        if ($search) {
+            $query->whereHas('owner', function ($query) use ($search) {
+                $query->where('first_name', 'like', "%$search%")
+                      ->orWhere('last_name', 'like', "%$search%");
+            });
+        }
 
-    public function index() : View
-    {
-        $workorders = WorkOrder::paginate(10);
+        $workorders = $query->paginate(10);
 
         return view('pages.worksheets', [
             'titles' => ['Worksheets'],
@@ -34,8 +31,26 @@ class WorksheetsController extends Controller
 
     public function show(Request $request, $id) : View
     {
-        return view('contents.view_worksheet',[
+        $workorder = WorkOrder::findOrFail($id);
+        $total = $workorder->calculateTotal(10000);
+        
+        foreach($workorder->users as $user)
+        {
+            if($user->role->name == 'operator')
+            {
+                $operator = $user->name;
+            } else if($user->role->name == 'mechanic')
+            {
+                $mechanic = $user->name;
+            }
+        }
+
+        return view('contents.worksheets.show',[
             'titles' => ['Worksheets', 'View'],
+            'workorder' => $workorder,
+            'total' => $total,
+            'operator' => $operator,
+            'mechanic' => $mechanic
         ]);
     }
 }

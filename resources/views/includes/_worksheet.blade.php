@@ -28,32 +28,31 @@
         </tr>
         </thead>
         <tbody>
+
+        @foreach($items as $item)
         @include('includes._worksheet-item', [
-            'item'=>'Engine v6 for Mazda 3',
-            'quantity'=>1,
-            'price'=>'200.000Ft'
+            'item'=> $item->name,
+            'quantity'=> $item->quantity,
+            'price'=> $item->price,
         ])
+
+        @endforeach
+
+        @foreach($tasks as $task)
         @include('includes._worksheet-item', [
-            'item'=>'Mechanical part for Mazda 3',
-            'quantity'=>1,
-            'price'=>'50.000Ft'
+            'item'=> $task->name,
+            'quantity'=> $task->duration,
+            'price'=> $task->duration*10000
         ])
-        @include('includes._worksheet-item', [
-            'item'=>'Material for engine',
-            'quantity'=>1,
-            'price'=>'15.000Ft'
-        ])
-        @include('includes._worksheet-item', [
-            'item'=>'Working cost 10.000/hour',
-            'quantity'=>12,
-            'price'=>'120.000Ft'
-        ])
+
+        @endforeach
+        
         </tbody>
     </table>
 </div>
 <div class="mt-16 flex">
     <div class="px-6 w-3/4 text-left">Total price: </div>
-    <div class="px-6 w-1/4  text-left">385.000Ft</div>
+    <div class="px-6 w-1/4  text-left">{{$total}} Ft</div>
 </div>
 <hr class="h-px mt-2 bg-gray-200 border-0 dark:bg-gray-700">
 <div class="mt-28 flex">
