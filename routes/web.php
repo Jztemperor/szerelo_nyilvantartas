@@ -46,4 +46,4 @@ Route::delete('/', [AuthenticationController::class,'destroy'])->name('logout');
 Route::resource('users', UsersController::class)->except('show')->middleware('authorize:admin');
 Route::get('/users/search', [UsersController::class,'search'])->name('users.search')->middleware('authorize:admin');
 
-Route::resource('worksheets', WorksheetsController::class)->middleware('auth');
+Route::resource('worksheets', WorksheetsController::class)->middleware('auth')->middleware('authorize:operator');
