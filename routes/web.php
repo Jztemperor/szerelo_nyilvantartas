@@ -26,7 +26,7 @@ Route::get('/testdata', function () {
 });
 
 Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard')->middleware('auth');
-Route::get('/inbox', [InboxController::class,'index'])->name('inbox')->middleware('auth');
+//Route::get('/inbox', [InboxController::class,'index'])->name('inbox')->middleware('auth');
 
 Route::get('/', [AuthenticationController::class,'create'])->name('login');
 Route::post('/', [AuthenticationController::class,'store']);
@@ -36,3 +36,4 @@ Route::resource('users', UsersController::class)->except('show')->middleware('au
 Route::get('/users/search', [UsersController::class,'search'])->name('users.search')->middleware('authorize:admin');
 
 Route::resource('worksheets', WorksheetsController::class)->middleware('auth');
+Route::resource('workers', WorkersController::class)->middleware('auth');
