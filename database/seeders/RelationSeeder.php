@@ -20,7 +20,7 @@ class RelationSeeder extends Seeder
      */
     public function run(): void
     {
-        Owner::factory(10)
+        Owner::factory(5)
             ->has(Address::factory()->count(1))
             ->has(Car::factory()->count(1))
             ->has(

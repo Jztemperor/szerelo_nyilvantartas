@@ -22,8 +22,8 @@ class DatabaseSeeder extends Seeder
             RelationSeeder::class,
         ]);
 
-        // \App\Models\User::factory(5)->role('operator')->create();
-        // \App\Models\User::factory(5)->role('mechanic')->create();
+        //User::factory(2)->role('operator')->create();
+        //User::factory(5)->role('mechanic')->create();
         User::factory(1)->role('admin')->create();
     }
 }

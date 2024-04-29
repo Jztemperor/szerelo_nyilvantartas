@@ -1,6 +1,6 @@
 <div class="p-4 sm:ml-64">
     <div class="p-4  mt-14">
-      
+
         <div class="mt-5 relative overflow-x-auto shadow-md sm:rounded-lg">
             <div class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900">
                 <label for="table-search-users" class="sr-only">Search</label>
@@ -10,7 +10,7 @@
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                         </svg>
                     </div>
-                    
+
                     <div class="flex items-center justify-between gap-5">
                         <div class="flex items-center gap-5">
                             <form method="GET" action="{{ route('users.index') }}" class="flex items-center">
@@ -41,8 +41,8 @@
                 </tr>
                 </thead>
                 <tbody>
-               
-                
+
+
                 @foreach($users as $user)
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
@@ -62,8 +62,8 @@
                                 <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline mr-3" href="{{route('users.edit', $user)}}">Edit</a>
                                 <form class="inline" method="POST" action="{{route('users.destroy', $user)}}">
                                     @csrf
-                                    @method('DELETE')    
-                                    <button type="submit" onclick="return confirm('Are you sure you want to delete this user? Related workorders will be removed!')" class="font-medium text-red-600 dark:text-red-500 hover:underline" href="">Delete</a>
+                                    @method('DELETE')
+                                    <button type="submit" onclick="return confirm('Are you sure you want to delete this user? Related workorders will be removed!')" class="font-medium text-red-600 dark:text-red-500 hover:underline" >Delete</button>
                                 </form>
                             </span>
                         </div>
@@ -73,7 +73,7 @@
 
                 </tbody>
             </table>
-            
+
 
         </div>
     </div>
