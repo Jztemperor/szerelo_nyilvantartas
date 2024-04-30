@@ -40,3 +40,4 @@ Route::resource('worksheets', WorksheetsController::class)->middleware('auth');
 Route::resource('workers', WorkersController::class)->middleware('auth');
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile')->middleware('auth');
+Route::put('/profile/update/{id}', [ProfileController::class,'update'])->name('profile.update')->middleware('auth');
