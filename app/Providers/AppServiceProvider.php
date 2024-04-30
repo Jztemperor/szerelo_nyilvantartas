@@ -23,5 +23,9 @@ class AppServiceProvider extends ServiceProvider
         {
             $view->with('user', \Auth::user());
         });
+        view()->composer('pages.profile', function ($view)
+        {
+            $view->with('user', \Auth::user());
+        });
     }
 }
