@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InboxController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\WorkersController;
 use App\Http\Controllers\WorksheetsController;
@@ -37,3 +38,5 @@ Route::get('/users/search', [UsersController::class,'search'])->name('users.sear
 
 Route::resource('worksheets', WorksheetsController::class)->middleware('auth');
 Route::resource('workers', WorkersController::class)->middleware('auth');
+
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile')->middleware('auth');
