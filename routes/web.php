@@ -42,3 +42,5 @@ Route::get('/public/faq', function () {
 Route::get('/public/privacy', function () {
     return view('contents.public.login-privacy');
 });
+
+Route::put('/profile/update/{id}', [ProfileController::class,'update'])->name('profile.update')->middleware('auth');
