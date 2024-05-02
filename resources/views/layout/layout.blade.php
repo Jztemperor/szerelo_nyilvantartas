@@ -13,7 +13,6 @@
     @yield('content')
 
     <script>
-
         function routeToContent(content,evt) {
             evt.preventDefault();
             const xhttp = new XMLHttpRequest();

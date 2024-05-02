@@ -14,7 +14,7 @@ class AuthenticationController extends Controller
     */
     public function create()
     {
-        return view('welcome');
+        return view('login');
     }
 
 
@@ -29,7 +29,7 @@ class AuthenticationController extends Controller
                 'name' => 'Invalid credentials!'
             ]);
         }
-        
+
         $request->session()->regenerate();
 
         return redirect()->route('dashboard');
@@ -42,7 +42,7 @@ class AuthenticationController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerate();
 
-        return redirect()->route('login'); 
+        return redirect()->route('login');
     }
 
 }
