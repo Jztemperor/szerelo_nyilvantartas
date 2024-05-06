@@ -39,6 +39,31 @@ class WorksheetsController extends Controller
             'workorders'=> $workorders
         ]);
     }
+//thi is for the mechanic view
+    public function works(Request $request) : View
+    {
+        $search = $request->input('search');
+        $user = Auth::user();
+
+
+        $query = WorkOrder::whereHas('users', function ($query) use ($user) {
+            $query->where('users.id', $user->id);
+        });
+
+        if ($search) {
+            $query->whereHas('owner', function ($query) use ($search) {
+                $query->where('first_name', 'like', "%$search%")
+                    ->orWhere('last_name', 'like', "%$search%");
+            });
+        }
+
+        $workorders = $query->paginate(10);
+
+        return view('pages.works', [
+            'titles' => ['Worksheets'],
+            'workorders'=> $workorders
+        ]);
+    }
 
     public function show(Request $request, $id) : View
     {
@@ -46,7 +71,7 @@ class WorksheetsController extends Controller
         $this->authorize('view', $workorder);
 
         $total = $workorder->calculateTotal(10000);
-        
+
         foreach($workorder->users as $user)
         {
             if($user->role->name == 'operator')

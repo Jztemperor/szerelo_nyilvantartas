@@ -34,6 +34,8 @@ Route::get('/users/search', [UsersController::class,'search'])->name('users.sear
 Route::resource('worksheets', WorksheetsController::class)->middleware('auth');
 Route::resource('workers', WorkersController::class)->middleware('auth');
 
+Route::get('works', [WorksheetsController::class,'works'])->middleware('auth');
+
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile')->middleware('auth');
 
 Route::get('/public/faq', function () {
@@ -41,6 +43,9 @@ Route::get('/public/faq', function () {
 });
 Route::get('/public/privacy', function () {
     return view('contents.public.login-privacy');
+});
+Route::get('/public/contact', function () {
+    return view('contents.public.login-contact');
 });
 
 Route::put('/profile/update/{id}', [ProfileController::class,'update'])->name('profile.update')->middleware('auth');
