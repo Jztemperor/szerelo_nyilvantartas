@@ -10,7 +10,7 @@
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                         </svg>
                     </div>
-                    
+
                     <div class="flex items-center justify-between gap-5">
                         <div class="flex items-center gap-5">
                             <form method="GET" action="{{ route('worksheets.index') }}" class="flex items-center">
@@ -79,10 +79,10 @@
                             <form class="inline max-w-sm mx-auto" method="POST" action="{{route('worksheets.update', $workorder->id)}}">
                                 @csrf
                                 @method('PUT')
-                                <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline" type="submit">Finish
+                                <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline" type="submit">Finish</button>
                             </form>
 
-                           
+
                         </td>
                     </tr>
                 @endforeach

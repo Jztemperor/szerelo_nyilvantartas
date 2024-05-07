@@ -13,12 +13,12 @@
 
                     <div class="flex items-center justify-between gap-5">
                         <div class="flex items-center gap-5">
-                            <form method="GET" action="{{ route('worksheets.index') }}" class="flex items-center">
+                            <form method="GET" action="{{ route('works.index') }}" class="flex items-center">
                                 <input type="text" name="search" id="table-search-users" class="mr-5 block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for worksheets">
                                 <button type="submit" class="px-3 py-2 bg-blue-500 text-white rounded-lg">Search</button>
                             </form>
 
-                            <a href="{{route("worksheets.index")}}" class="px-3 py-2 bg-gray-500 text-white rounded-lg">Clear</a>
+                            <a href="{{route("works.index")}}" class="px-3 py-2 bg-gray-500 text-white rounded-lg">Clear</a>
                         </div>
                     </div>
 
@@ -65,20 +65,22 @@
                         </td>
                         <td class="px-6 py-4">
                             <div class="flex items-center">
-                                <div class="h-2.5 w-2.5 rounded-full bg-blue-500 me-2"></div> {{$workorder->owner->cars[0]->make." ".$workorder->owner->cars[0]->model}}
+                                {{$workorder->owner->cars[0]->make." ".$workorder->owner->cars[0]->model}}
                             </div>
                         </td>
                         <td class="px-6 py-4">
                             {{$workorder->updated_at}}
                         </td>
                         <td class="px-6 py-4">
-                            <a href="{{route('worksheets.show', $workorder->id)}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline mr-2">Edit</a>
-
-                            <form class="inline max-w-sm mx-auto" method="POST" action="{{route('worksheets.update', $workorder->id)}}">
+                            <a href="{{route('works.show', $workorder->id)}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline mr-2">View</a>
+                            @if($workorder->status != 'Finished')
+                            <a href="{{route('works.edit', $workorder->id)}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline mr-2">Edit</a>
+                            <form class="inline max-w-sm mx-auto" method="POST" action="{{route('works.update', $workorder->id)}}">
                                 @csrf
                                 @method('PUT')
                                 <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline" type="submit">Finish</button>
                             </form>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
