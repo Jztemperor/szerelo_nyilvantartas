@@ -6,6 +6,7 @@ use App\Http\Controllers\InboxController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\WorkersController;
+use App\Http\Controllers\WorksController;
 use App\Http\Controllers\WorksheetsController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,9 +33,7 @@ Route::resource('users', UsersController::class)->except('show')->middleware('au
 Route::get('/users/search', [UsersController::class,'search'])->name('users.search')->middleware('authorize:admin');
 
 Route::resource('worksheets', WorksheetsController::class)->middleware('auth');
-Route::resource('workers', WorkersController::class)->middleware('auth');
-
-Route::get('works', [WorksheetsController::class,'works'])->middleware('auth');
+Route::resource('works', WorksController::class)->middleware('auth');
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile')->middleware('auth');
 

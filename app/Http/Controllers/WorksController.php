@@ -12,9 +12,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 
-class WorksheetsController extends Controller
+class WorksController extends Controller
 {
-
     public function index(Request $request) : View
     {
         $search = $request->input('search');
@@ -23,27 +22,33 @@ class WorksheetsController extends Controller
 
         $query = WorkOrder::whereHas('users', function ($query) use ($user) {
             $query->where('users.id', $user->id);
+            $query->where('status','!=','Closed');
         });
 
         if ($search) {
             $query->whereHas('owner', function ($query) use ($search) {
                 $query->where('first_name', 'like', "%$search%")
-                      ->orWhere('last_name', 'like', "%$search%");
+                    ->orWhere('last_name', 'like', "%$search%");
             });
         }
 
         $workorders = $query->paginate(10);
 
-        return view('pages.worksheets', [
-            'titles' => ['Worksheets'],
+        return view('pages.works', [
+            'titles' => ['Works'],
             'workorders'=> $workorders
         ]);
     }
 
-    public function show(Request $request, $id) : View
+    public function edit(Request $request, $id) : View
     {
         $workorder = WorkOrder::findOrFail($id);
-        $this->authorize('view', $workorder);
+        //$this->authorize('view', $workorder);
+
+        if ($workorder->status === "Started") {
+            $workorder->status = "Working";
+            $workorder->save();
+        }
 
         $total = $workorder->calculateTotal(10000);
 
@@ -59,7 +64,34 @@ class WorksheetsController extends Controller
         }
 
         return view('contents.worksheets.show',[
-            'titles' => ['Worksheets', 'View'],
+            'titles' => ['Works', 'Edit'],
+            'workorder' => $workorder,
+            'total' => $total,
+            'operator' => $operator,
+            'mechanic' => $mechanic
+        ]);
+    }
+
+    public function show(Request $request, $id) : View
+    {
+        $workorder = WorkOrder::findOrFail($id);
+        //$this->authorize('view', $workorder);
+
+        $total = $workorder->calculateTotal(10000);
+
+        foreach($workorder->users as $user)
+        {
+            if($user->role->name == 'operator')
+            {
+                $operator = $user->name;
+            } else if($user->role->name == 'mechanic')
+            {
+                $mechanic = $user->name;
+            }
+        }
+
+        return view('contents.worksheets.show',[
+            'titles' => ['Works', 'View'],
             'workorder' => $workorder,
             'total' => $total,
             'operator' => $operator,
@@ -70,9 +102,9 @@ class WorksheetsController extends Controller
     public function update(Request $request, $id)
     {
         $workorder = WorkOrder::findOrFail($id);
-        $this->authorize('update', $workorder);
+        //$this->authorize('update', $workorder);
 
-        $workorder->status = "Closed";
+        $workorder->status = "Finished";
         $workorder->save();
 
         return redirect()->back();
@@ -89,46 +121,5 @@ class WorksheetsController extends Controller
             'titles' => ['Worksheets', 'Create'],
             'mechanics' => $mechanics
         ]);
-    }
-
-    public function store(StoreWorksheetRequest $request)
-    {
-        $currentUser = Auth::user();
-        $mechanic = User::findOrFail($request->mechanic);
-
-        // Create owner
-        $owner = Owner::make();
-        $owner->first_name = $request->owner_first_name;
-        $owner->last_name = $request->owner_last_name;
-        $owner->phone = $request->owner_phone;
-        $owner->save();
-
-
-        // Create car
-        $car = Car::make();
-        $car->make = $request->make;
-        $car->model = $request->model;
-        $car->license_plate = $request->license_plate;
-        $car->manufacturing_year = $request->manufacturing_year;
-        $owner->cars()->save($car);
-
-        // Create address
-        $address = Address::make();
-        $address->country = $request->owner_country;
-        $address->city = $request->owner_city;
-        $address->state = $request->owner_state;
-        $address->zip_code = $request->owner_zip;
-        $address->street = $request->owner_street;
-        $address->street_nr = $request->owner_steetnr;
-        $owner->address()->save($address);
-
-        $workorder = WorkOrder::make();
-        $workorder->status = "Started";
-        $owner->workorders()->save($workorder);
-        $workorder->users()->save($currentUser);
-        $workorder->users()->save($mechanic);
-
-        return redirect()->route('worksheets.index');
-
     }
 }
