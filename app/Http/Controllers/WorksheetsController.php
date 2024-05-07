@@ -128,7 +128,7 @@ class WorksheetsController extends Controller
         $workorder->users()->save($currentUser);
         $workorder->users()->save($mechanic);
 
-        return redirect()->route('worksheets.index');
+        return redirect()->route('worksheets.index')->with('text', 'Worksheet created successfully!');
 
     }
 }
