@@ -10,6 +10,8 @@ class Part extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'quantity', 'price'];
+
     public function workorders(): BelongsToMany
     {
         return $this->belongsToMany(WorkOrder::class);
