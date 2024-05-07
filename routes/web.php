@@ -33,6 +33,7 @@ Route::resource('users', UsersController::class)->except('show')->middleware('au
 Route::get('/users/search', [UsersController::class,'search'])->name('users.search')->middleware('authorize:admin');
 
 Route::resource('worksheets', WorksheetsController::class)->middleware('auth');
+Route::resource('workers', WorkersController::class)->middleware('auth');
 Route::resource('works', WorksController::class)->middleware('auth');
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile')->middleware('auth');
