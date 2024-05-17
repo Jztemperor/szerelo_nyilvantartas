@@ -24,7 +24,7 @@ class WorkOrder extends Model
 
     public function parts(): BelongsToMany
     {
-        return $this->belongsToMany(Part::class);
+        return $this->belongsToMany(Part::class)->withPivot('quantity');
     }
 
     public function owner(): BelongsTo
@@ -36,13 +36,11 @@ class WorkOrder extends Model
     public function calculateTotal($hourlyCost)
     {
         $total = 0;
-        foreach ($this->tasks as $task) 
-        {
+        foreach ($this->tasks as $task) {
             $total += $task->duration * $hourlyCost;
         }
 
-        foreach ($this->parts as $part)
-        {
+        foreach ($this->parts as $part) {
             $total += $part->price;
         }
 

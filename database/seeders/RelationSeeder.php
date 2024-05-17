@@ -18,6 +18,7 @@ class RelationSeeder extends Seeder
     /**
      * Run the database seeds.
      */
+
     public function run(): void
     {
         Owner::factory(5)
@@ -28,8 +29,16 @@ class RelationSeeder extends Seeder
                     ->has(User::factory()->role('mechanic')->count(1))
                     ->has(User::factory()->role('operator')->count(1))
                     ->has(Task::factory()->count(5))
-                    ->has(Part::factory()->count(5))
+                    ->hasAttached(
+                        Part::factory()->count(5)->create(),
+                        ['quantity' => $this->generateRandomQuantity()]
+                    )
             )
             ->create();
+    }
+
+    private function generateRandomQuantity(): int
+    {
+        return array_rand([1, 2, 3, 4, 5]);
     }
 }

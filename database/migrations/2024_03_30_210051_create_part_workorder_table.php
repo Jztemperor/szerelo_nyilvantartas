@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('work_order_id');
             $table->unsignedBigInteger('part_id');
+            $table->integer('quantity')->default(0); // Extra column
             $table->timestamps();
 
             $table->foreign('work_order_id')->references('id')->on('work_orders');
