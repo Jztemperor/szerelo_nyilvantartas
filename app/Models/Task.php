@@ -12,6 +12,6 @@ class Task extends Model
 
     public function workorder(): BelongsTo
     {
-        return $this->belongsTo(WorkOrder::class);
+        return $this->belongsTo(WorkOrder::class, 'work_order_id');
     }
 }

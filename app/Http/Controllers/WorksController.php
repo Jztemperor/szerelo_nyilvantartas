@@ -7,6 +7,7 @@ use App\Models\Address;
 use App\Models\Owner;
 use App\Models\Car;
 use App\Models\Part;
+use App\Models\Task;
 use App\Models\User;
 use App\Models\WorkOrder;
 use Illuminate\Support\Facades\Auth;
@@ -129,6 +130,25 @@ class WorksController extends Controller
 
         $part->quantity -= 1;
         $part->save();
+
+        return redirect()->route('works.show', $id);
+    }
+
+    public function add_task_form($id): View
+    {
+        return view('contents.works.add-task', compact('id'));
+    }
+
+    public function add_task(Request $request, $id)
+    {
+        $task = new Task();
+        $task->name = $request->task;
+        $task->duration = $request->duration;
+
+        $workOrder = WorkOrder::findOrFail($id);
+
+        $task->workorder()->associate($workOrder);
+        $task->save();
 
         return redirect()->route('works.show', $id);
     }
