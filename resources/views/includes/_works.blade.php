@@ -1,5 +1,5 @@
 
-<h1 class="mb-8 text-center text-5xl font-extrabold dark:text-white">Worksheet</h1>
+<h1 class="mb-8 text-center text-5xl font-extrabold dark:text-white">Work</h1>
 <div class="flex">
     <div class="px-6 w-2/4 text-left">
         <div>Administrator: {{$administrator}}</div>

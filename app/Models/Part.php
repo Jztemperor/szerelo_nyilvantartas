@@ -14,6 +14,6 @@ class Part extends Model
 
     public function workorders(): BelongsToMany
     {
-        return $this->belongsToMany(WorkOrder::class);
+        return $this->belongsToMany(WorkOrder::class)->withPivot('quantity');
     }
 }

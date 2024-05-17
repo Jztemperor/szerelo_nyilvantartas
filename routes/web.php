@@ -56,3 +56,6 @@ Route::get('/parts', [PartController::class, 'index'])->name('parts.index')->mid
 Route::get('/parts/order', [PartController::class, 'create'])->name('parts.create')->middleware('auth');
 Route::post('/parts/order', [PartController::class, 'store'])->name('parts.store')->middleware('auth');
 Route::put('/parts/update/{id}', [PartController::class, 'update'])->name('parts.update')->middleware('auth');
+
+Route::get('works/{workId}/add-part', [WorksController::class, 'add_part_form'])->name('add-part-form')->middleware('auth');
+Route::post('works/{id}/add-part', [WorksController::class, 'add_part'])->name('add-part')->middleware('auth');
