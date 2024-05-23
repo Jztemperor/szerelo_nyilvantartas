@@ -12,7 +12,12 @@ class WorkersController extends Controller
     public function index() : View
     {
         return view('pages.workers', [
-            'titles' => ['Workers'],
+            'titles' => [
+                [
+                    'name' => 'Workers',
+                    'url' => '/workers'
+                ]
+            ],
             'workers' => WorkerStatesView::orderby('works', 'asc')->paginate(5)
         ]);
     }
