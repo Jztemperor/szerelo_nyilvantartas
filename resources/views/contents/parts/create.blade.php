@@ -3,7 +3,7 @@
 @section('content')
 <div class="p-4 sm:ml-64">
     <div class="p-4  mt-14">
-
+        @include('includes._breadcrumb')
         <h1 class="text-center mb-5">Log Ordered Part</h1>
 
         <form class="max-w-sm mx-auto" method="POST" action="{{route('parts.store')}}">

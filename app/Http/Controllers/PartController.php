@@ -22,13 +22,31 @@ class PartController extends Controller
 
         $parts = $query->paginate(10);
 
-        return view('contents.parts.index', compact('parts'));
+        return view('contents.parts.index',[
+            'titles' => [
+                [
+                    'name' => 'Parts',
+                    'url' => '/parts'
+                ]
+            ],
+        ] , compact('parts'));
     }
 
 
     public function create(): View
     {
-        return view('contents.parts.create');
+        return view('contents.parts.create',[
+            'titles' => [
+                [
+                    'name' => 'Parts',
+                    'url' => '/parts'
+                ],
+                [
+                    'name' => 'Create',
+                    'url' => '#'
+                ]
+            ]
+        ]);
     }
 
     public function store(StorePartRequest $storePartRequest): RedirectResponse

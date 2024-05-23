@@ -35,7 +35,12 @@ class WorksheetsController extends Controller
         $workorders = $query->paginate(10);
 
         return view('pages.worksheets', [
-            'titles' => ['Worksheets'],
+            'titles' => [
+                [
+                    'name' => 'Worksheets',
+                    'url' => '/worksheets'
+                ]
+            ],
             'workorders'=> $workorders
         ]);
     }
@@ -59,7 +64,16 @@ class WorksheetsController extends Controller
         }
 
         return view('contents.worksheets.show',[
-            'titles' => ['Worksheets', 'View'],
+            'titles' => [
+                [
+                    'name' => 'Worksheets',
+                    'url' => '/worksheets'
+                ],
+                [
+                    'name' => 'View',
+                    'url' => '#'
+                ]
+            ],
             'workorder' => $workorder,
             'total' => $total,
             'operator' => $operator,
@@ -86,7 +100,16 @@ class WorksheetsController extends Controller
                         ->get();
 
         return view('contents.worksheets.create', [
-            'titles' => ['Worksheets', 'Create'],
+            'titles' => [
+                [
+                    'name' => 'Worksheets',
+                    'url' => '/worksheets'
+                ],
+                [
+                    'name' => 'Create',
+                    'url' => '#'
+                ]
+            ],
             'mechanics' => $mechanics
         ]);
     }

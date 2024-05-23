@@ -12,7 +12,12 @@ class ProfileController extends Controller
     public function index() : View
     {
         return view('pages.profile', [
-            'titles' => ['Profile']
+            'titles' => [
+                [
+                'name' => 'Profile',
+                'url' => '/profile'
+                ]
+            ]
         ]);
     }
 

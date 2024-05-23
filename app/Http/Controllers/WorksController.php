@@ -37,44 +37,15 @@ class WorksController extends Controller
         $workorders = $query->paginate(10);
 
         return view('pages.works', [
-            'titles' => ['Works'],
+            'titles' => [
+                [
+                    'name' => 'Works',
+                    'url' => '/works'
+                ]
+            ],
             'workorders' => $workorders
         ]);
     }
-
-    /*
-    public function edit(Request $request, $id) : View
-    {
-        $workorder = WorkOrder::findOrFail($id);
-        //$this->authorize('view', $workorder);
-
-        if ($workorder->status === "Started") {
-            $workorder->status = "Working";
-            $workorder->save();
-        }
-
-        $total = $workorder->calculateTotal(10000);
-
-        foreach($workorder->users as $user)
-        {
-            if($user->role->name == 'operator')
-            {
-                $operator = $user->name;
-            } else if($user->role->name == 'mechanic')
-            {
-                $mechanic = $user->name;
-            }
-        }
-
-        return view('contents.worksheets.show',[
-            'titles' => ['Works', 'Edit'],
-            'workorder' => $workorder,
-            'total' => $total,
-            'operator' => $operator,
-            'mechanic' => $mechanic
-        ]);
-    }
-    */
 
     public function edit(Request $request, $id): View
     {
@@ -98,7 +69,16 @@ class WorksController extends Controller
 
 
         return view('contents.works.edit', [
-            'titles' => ['Works', 'Edit'],
+            'titles' => [
+                [
+                    'name' => 'Works',
+                    'url' => '/works'
+                ],
+                [
+                    'name' => 'Edit',
+                    'url' => '/works/edit'
+                ]
+            ],
             'workorder' => $workorder,
             'total' => $total,
             'operator' => $operator,
@@ -169,7 +149,12 @@ class WorksController extends Controller
         }
 
         return view('contents.works.show', [
-            'titles' => ['Works', 'View'],
+            'titles' => [
+                [
+                    'name' => 'Works',
+                    'url' => '#'
+                ]
+            ],
             'workorder' => $workorder,
             'total' => $total,
             'operator' => $operator,
@@ -196,7 +181,16 @@ class WorksController extends Controller
             ->get();
 
         return view('contents.worksheets.create', [
-            'titles' => ['Worksheets', 'Create'],
+            'titles' => [
+                [
+                    'name' => 'Works',
+                    'url' => '/works'
+                ],
+                [
+                    'name' => 'Create',
+                    'url' => '#'
+                ]
+            ],
             'mechanics' => $mechanics
         ]);
     }
