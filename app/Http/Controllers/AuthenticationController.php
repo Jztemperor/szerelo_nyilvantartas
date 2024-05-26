@@ -12,6 +12,7 @@ class AuthenticationController extends Controller
     /*
     * Displays the form
     */
+
     public function create()
     {
         return view('login');
@@ -23,8 +24,7 @@ class AuthenticationController extends Controller
     */
     public function store(LoginRequest $request)
     {
-        if(!Auth::attempt($request->validated(), true))
-        {
+        if (!Auth::attempt($request->validated(), true)) {
             throw ValidationException::withMessages([
                 'name' => 'Invalid credentials!'
             ]);
@@ -44,5 +44,4 @@ class AuthenticationController extends Controller
 
         return view('login')->with('text', 'Logout Successful!');
     }
-
 }
