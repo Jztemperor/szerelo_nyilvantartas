@@ -46,7 +46,7 @@
                     </div>
                 </div>
 
-                <!-- Line Chart -->
+                <!--
                 @if($user->role->name != "admin")
                 <div class="py-6" id="pie-chart"></div>
                 
@@ -93,6 +93,7 @@
                     </div>
                 </div>
                 @endif
+            -->
 
                 <!--
                 <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
