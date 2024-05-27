@@ -47,11 +47,15 @@
                 </div>
 
                 <!-- Line Chart -->
+                @if($user->role->name != "admin")
                 <div class="py-6" id="pie-chart"></div>
+                
+                
 
                 <div class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
                     <div class="flex justify-between items-center pt-5">
 
+                        @if($user->role->name == "mechanic")
                         <a
                             href="works"
                             class="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-blue-600 hover:text-blue-700 dark:hover:text-blue-500  hover:bg-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
@@ -60,6 +64,7 @@
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
                             </svg>
                         </a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -87,7 +92,9 @@
                         </div>
                     </div>
                 </div>
+                @endif
 
+                <!--
                 <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
                     <div class="grid grid-cols-3 gap-3 mb-2">
                         <dl class="bg-orange-50 dark:bg-gray-600 rounded-lg flex flex-col items-center justify-center h-[78px]">
@@ -104,6 +111,7 @@
                         </dl>
                     </div>
                 </div>
+            -->
 
                 <!-- Radial Chart -->
                 <div class="py-6" id="radial-chart"></div>
@@ -112,6 +120,18 @@
         @include('includes._footer')
     </div>
 </div>
+
+   @php
+    $totalWorkorders = count($workorders);
+    $startingCount = count($workorders->whereIn('status', ['Starting']));
+    $workingCount = count($workorders->whereIn('status', ['Woriking']));
+    $finishedClosedCount = count($workorders->whereIn('status', ['Finished', 'Closed']));
+
+    $startingPercentage = $totalWorkorders > 0 ? ($startingCount / $totalWorkorders) * 100 : 0;
+    $workingPercentage = $totalWorkorders > 0 ? ($workingCount / $totalWorkorders) * 100 : 0;
+    $finishedClosedPercentage = $totalWorkorders > 0 ? ($finishedClosedCount / $totalWorkorders) * 100 : 0;
+@endphp
+
 <script>
 
     const getChartOptions = () => {
@@ -176,9 +196,11 @@
         const chart = new ApexCharts(document.getElementById("pie-chart"), getChartOptions());
         chart.render();
     }
+ 
+
     const getChartOptions2 = () => {
         return {
-            series: [{{count($workorders->whereIn('status',['Starting']))/count($workorders)*100}} , {{count($workorders->whereIn('status',['Woriking']))/count($workorders)*100}}, {{count($workorders->whereIn('status',['Finished','Closed']))/count($workorders)*100}}],
+            series: [{{ $startingPercentage }} , {{ $workingPercentage }} , {{ $finishedClosedPercentage }}],
             colors: ["#1C64F2", "#16BDCA", "#FDBA8C"],
             chart: {
                 height: "380px",
@@ -234,6 +256,7 @@
             }
         }
     }
+
 
     if (document.getElementById("radial-chart") && typeof ApexCharts !== 'undefined') {
         const chart = new ApexCharts(document.querySelector("#radial-chart"), getChartOptions2());
