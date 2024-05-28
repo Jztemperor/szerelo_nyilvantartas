@@ -13,9 +13,8 @@ class StoreUserRequest extends FormRequest
     public function authorize(): bool
     {
         $role = Auth::user()->role->name;
-        
-        if($role === 'admin')
-        {
+
+        if ($role === 'admin') {
             return true;
         }
 
@@ -30,7 +29,15 @@ class StoreUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string',
+            'name' => [
+                'required',
+                'string',
+                function ($attribute, $value, $fail) {
+                    if (!preg_match('/^\S+\s+\S+$/', $value)) {
+                        $fail('The ' . $attribute . ' must contain a first name and a last name separated by a space.');
+                    }
+                },
+            ],
         ];
     }
 }
