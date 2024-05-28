@@ -41,7 +41,7 @@ class WorkOrder extends Model
         }
 
         foreach ($this->parts as $part) {
-            $total += $part->price;
+            $total += $part->price * $part->pivot->quantity;
         }
 
         return $total;
