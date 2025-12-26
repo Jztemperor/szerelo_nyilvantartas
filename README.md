@@ -2,7 +2,7 @@
 
 **Szerelő Nyilvántartás** is a web-based workshop/maintenance tracking system designed to help technicians and managers keep structured records of maintenance jobs, assignments, and work progress.
 
-> This repository contains the full source code for the application along with database migrations, routes, and a simple dashboard. :contentReference[oaicite:1]{index=1}
+> This repository contains the full source code for the application along with database migrations, routes and dashboard.
 
 ---
 
